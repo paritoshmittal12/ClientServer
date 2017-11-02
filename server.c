@@ -28,12 +28,12 @@ int main(int argc, char **argv)
 	char ip[INET6_ADDRSTRLEN], *port, buf[128],udp_buf[1024], udp_port[6];
 	memset(&base, 0 ,sizeof(base) );
 	port = argv[1];
-
+	
 	base.ai_family = AF_INET;
 	base.ai_socktype = SOCK_STREAM;
 	base.ai_flags = AI_PASSIVE;
 
-	if(temp1 = getaddrinfo(NULL, port, &base, &res) != 0)
+	if(temp1 = (getaddrinfo(NULL, port, &base, &res) != 0))
 	{
 		fprintf(stderr, "error in getaddrinfo %s\n", gai_strerror(temp1));
 		return 0;

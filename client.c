@@ -10,6 +10,8 @@
 #include <sys/wait.h>
 #include <signal.h>
 
+// A function to get ip of the current socket
+// Ip is stored in the struct sockaddr
 void *get_ip(struct sockaddr *s)
 {
 	return &(((struct sockaddr_in *)s)->sin_addr);
@@ -77,25 +79,9 @@ int main(int argc, char **argv)
 		exit(1);
 	}
 	printf("Enter message to send by UDP - ");
-	// gets(udp_buf);
+	
 	scanf("%[^\n]%*c",udp_buf);
-	// fgets(temp_buf,1024,stdin);
-	// int l = strlen(temp_buf);
-	// if((l > 0) && (temp_buf[l-1]) == '\n')
-	// {
-	// 	l--;
-	// 	// temp_buf[l-1] = '\0';
-	// }
-	// memcpy(udp_buf,temp_buf,l);
-	// udp_buf[l] = '\0';
-	// // i = 0;
-	// while((ch = getchar()) != '\n')
-	// {
-	// 	temp_buf[i] = ch;
-	// 	i++;
-	// }
-	// temp_buf[i] = '\0';
-	// strncpy(udp_buf,temp_buf,i+1);
+	
 	((struct sockaddr_in *)temp->ai_addr)->sin_port = htons(atoi(buf));
 	
 	if((i = sendto(sockfd, udp_buf, strlen(udp_buf), 0, (struct sockaddr *)temp->ai_addr, sizeof(struct sockaddr_storage )) == -1))
